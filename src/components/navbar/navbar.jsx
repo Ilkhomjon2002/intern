@@ -27,7 +27,7 @@ const Navbar = () => {
 								{title}
 							</Link>
 						))}
-					</NavbarBody>{" "}
+					</NavbarBody>
 					<Button width={"120px"}>Login </Button>
 				</NavbarWrapper>
 			</Container>
