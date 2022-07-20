@@ -1,35 +1,23 @@
 import React, { useRef } from "react";
-import { MainCarousel } from "./style";
-import { Carousel } from "antd";
+import img1 from "../../../assets/unsplash_2gDwlIim3Uw.png";
+import img2 from "../../../assets/unsplash_g39p1kDjvSY.png";
+import { CarouselWrapper, Icon, Img, MainCarousel } from "./style";
 const CarouselComponent = () => {
 	const slider = useRef();
-	const onChange = (currentSlide) => {
-		console.log(currentSlide);
-	};
-	const contentStyle = {
-		height: "160px",
-		color: "#fff",
-		lineHeight: "160px",
-		textAlign: "center",
-		background: "#364d79",
-	};
+	console.log(slider);
 	return (
-		<div>
-			<Carousel afterChange={onChange}>
-				<div>
-					<h3 style={contentStyle}>1</h3>
-				</div>
-				<div>
-					<h3 style={contentStyle}>2</h3>
-				</div>
-				<div>
-					<h3 style={contentStyle}>3</h3>
-				</div>
-				<div>
-					<h3 style={contentStyle}>4</h3>
-				</div>
-			</Carousel>
-		</div>
+		<CarouselWrapper>
+			<Icon.Left onClick={() => slider.current?.prev()} />
+			<Icon.Right onClick={() => slider.current?.next()} />
+			<MainCarousel ref={slider} dots autoplay>
+				<Img src={img1} alt="img" />
+				<Img src={img2} alt="img" />
+				<Img src={img1} alt="img" />
+				<Img src={img2} alt="img" />
+				<Img src={img1} alt="img" />
+				<Img src={img2} alt="img" />
+			</MainCarousel>
+		</CarouselWrapper>
 	);
 };
 

@@ -5,12 +5,12 @@ import { Container } from "./style";
 
 const Home = () => {
 	return (
-		<Container>
-			<div>
+		<>
+			<Container>
 				<Filter></Filter>
-				<CarouselComponent></CarouselComponent>
-			</div>
-		</Container>
+			</Container>
+			<CarouselComponent></CarouselComponent>
+		</>
 	);
 };
 
