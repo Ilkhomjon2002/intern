@@ -13,6 +13,37 @@ const Img = styled("img")`
 	background: black;
 	width: 100%;
 `;
+const Content = styled.div`
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	z-index: 999;
+	color: white;
+	font-family: "Montserrat";
+	font-style: normal;
+	letter-spacing: -0.02em;
+	line-height: 48px;
+	font-weight: 700;
+	font-size: 44px;
+	&::before {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		content: "";
+		background-color: rgba(0, 0, 0, 0.65);
+		z-index: -1;
+	}
+`;
+const Wrapp = styled.div`
+	position: relative;
+`;
 const Icon = styled.div``;
 Icon.Left = styled(ArrowLeftOutlined)`
 	display: flex;
@@ -62,4 +93,7 @@ Icon.Right = styled(ArrowRightOutlined)`
 		fill: #0d263b;
 	}
 `;
-export { MainCarousel, Img, Icon, CarouselWrapper };
+const Info = styled.div`
+	color: white;
+`;
+export { MainCarousel, Img, Icon, CarouselWrapper, Content, Wrapp, Info };
