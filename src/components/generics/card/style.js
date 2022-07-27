@@ -16,6 +16,7 @@ const Card_item = styled.div`
 	min-height: 250px;
 	width: 400px;
 	background-color: #ffffff;
+	overflow: hidden;
 	border: 1px solid #e6e9ec;
 	border-radius: 3px;
 	:hover {

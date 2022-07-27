@@ -6,6 +6,8 @@ const Card = styled.div`
 	align-items: center;
 	position: relative;
 	width: 280px;
+	overflow: hidden;
+	border-radius: 3px;
 	height: 350px;
 	background: linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
 		url(.jpg);
@@ -17,6 +19,8 @@ const Card = styled.div`
 `;
 Card.Img = styled.img`
 	width: 100%;
+	height: 100%;
+	object-fit: cover;
 `;
 Card.Context = styled.div`
 	color: #ffffff;
@@ -25,6 +29,14 @@ Card.Context = styled.div`
 	font-style: normal;
 	font-weight: 600;
 	font-size: 18px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	align-items: center;
 `;
 
 export { Card };

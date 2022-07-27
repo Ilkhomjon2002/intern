@@ -16,7 +16,10 @@ import {
 	User,
 } from "./style";
 import avatar from "../../../assets/card Icons/24-248253_user-profile-default-image-png-clipart-png-download.png";
+
+import { useNavigate } from "react-router-dom";
 const Card = ({ info, mr, ml, margin, onClick }) => {
+	const navigate = useNavigate();
 	const text =
 		(info?.name || "name") +
 		" " +
@@ -69,12 +72,14 @@ const Card = ({ info, mr, ml, margin, onClick }) => {
 			<Line />
 			<PriceWrap>
 				<div>
-					<Sale>$2,800$/mo</Sale>
-					<Price>$7.500/mo</Price>
+					<Sale>$2,800/mo</Sale>
+					<Price>$7,500/mo</Price>
 				</div>
 
 				<div>
-					<Icons.Cursor></Icons.Cursor>
+					<Icons.Cursor
+						onClick={() => navigate(`../view${info.id}`)}
+					></Icons.Cursor>
 					<Icons.Heart></Icons.Heart>
 				</div>
 			</PriceWrap>

@@ -1,6 +1,8 @@
+import View from "../components/productView/view";
 import Generic from "../page/GenericPage";
 
 import Home from "../page/Home/home";
+import Properties from "../page/Properties/properties";
 export const navbar = [
 	{
 		id: 1,
@@ -12,7 +14,7 @@ export const navbar = [
 		id: 2,
 		title: "Properties",
 		path: "/properties",
-		element: <Home></Home>,
+		element: <Properties></Properties>,
 	},
 	{
 		id: 3,

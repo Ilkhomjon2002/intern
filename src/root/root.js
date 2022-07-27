@@ -2,6 +2,7 @@ import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "../components/home/home";
 import Navbar from "../components/navbar/navbar";
+import View from "../components/productView/view";
 import ErrorPage from "../page/ErrorPage/Error";
 import { navbar } from "../utils/navbar";
 
@@ -13,7 +14,9 @@ const Root = () => {
 				{navbar.map(({ id, element, path }) => (
 					<Route path={path} element={element} key={id} />
 				))}
+				<Route path="/view:id" element={<View></View>}></Route>
 			</Route>
+
 			<Route path="*" element={<ErrorPage></ErrorPage>} />
 		</Routes>
 	);
