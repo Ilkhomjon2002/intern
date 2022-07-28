@@ -56,7 +56,9 @@ const Login = () => {
 					}}
 				></Input>
 				{Formik.errors.email && (
-					<ErrorWindow>{Formik.errors.email}</ErrorWindow>
+					<ErrorWindow>
+						{Formik.errors.email && Formik.values.email.touched}
+					</ErrorWindow>
 				)}
 				<Label for="password">Password</Label>
 				<Input
@@ -65,10 +67,16 @@ const Login = () => {
 					type={"password"}
 					value={Formik.values.password}
 					placeholder="Password"
+					style={{
+						borderBottomColor:
+							Formik.errors.email && Formik.touched ? "red" : "blue",
+					}}
 					onChange={Formik.handleChange}
 				></Input>
-				{Formik.errors.password && (
-					<ErrorWindow>{Formik.errors.password}</ErrorWindow>
+				{Formik.errors.password && Formik.values.password.touched && (
+					<ErrorWindow>
+						{Formik.errors.password && Formik.values.password.touched}
+					</ErrorWindow>
 				)}
 				<Others>
 					<div>
