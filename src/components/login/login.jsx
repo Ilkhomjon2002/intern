@@ -35,7 +35,6 @@ const Login = () => {
 			password: Yup.string().required("Please Enter your password"),
 		}),
 	});
-
 	return (
 		<Container>
 			<Signin onSubmit={Formik.handleSubmit}>
@@ -51,14 +50,11 @@ const Login = () => {
 					placeholder="Email"
 					onChange={Formik.handleChange}
 					style={{
-						borderBottomColor:
-							Formik.errors.email && Formik.touched ? "red" : "blue",
+						borderBottomColor: Formik.errors.email ? "red" : "blue",
 					}}
 				></Input>
 				{Formik.errors.email && (
-					<ErrorWindow>
-						{Formik.errors.email && Formik.values.email.touched}
-					</ErrorWindow>
+					<ErrorWindow>{Formik.errors.email}</ErrorWindow>
 				)}
 				<Label for="password">Password</Label>
 				<Input
@@ -68,15 +64,12 @@ const Login = () => {
 					value={Formik.values.password}
 					placeholder="Password"
 					style={{
-						borderBottomColor:
-							Formik.errors.email && Formik.touched ? "red" : "blue",
+						borderBottomColor: Formik.errors.password ? "red" : "blue",
 					}}
 					onChange={Formik.handleChange}
 				></Input>
-				{Formik.errors.password && Formik.values.password.touched && (
-					<ErrorWindow>
-						{Formik.errors.password && Formik.values.password.touched}
-					</ErrorWindow>
+				{Formik.errors.password && (
+					<ErrorWindow>{Formik.errors.password}</ErrorWindow>
 				)}
 				<Others>
 					<div>
