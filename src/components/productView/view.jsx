@@ -39,6 +39,7 @@ const View = () => {
 				<Img3 src={data?.attachments[0]?.imgPath}></Img3>
 				<Img4 src={data?.attachments[0]?.imgPath}></Img4>
 			</Images>
+
 			<h1 className="title">{data?.name}</h1>
 			<span className="description">{text}</span>
 		</Container>

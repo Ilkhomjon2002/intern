@@ -1,16 +1,14 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-	display: flex;
-	align-items: flex-start;
-	flex-direction: column;
 	width: 80%;
 	padding: 24px 130px;
+	margin: 0 auto;
 `;
 
 const Images = styled.div`
 	display: grid;
-	grid-template-columns: 540px 280px 280px 280px;
+	grid-template-columns: 2fr 1fr 1fr 1fr;
 	grid-template-rows: auto;
 	grid-template-areas:
 		"main main img1 img2"

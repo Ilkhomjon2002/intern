@@ -28,7 +28,9 @@ const Navbar = () => {
 							</Link>
 						))}
 					</NavbarBody>
-					<Button width={"120px"}>Login </Button>
+					<Button onClick={() => navigate("signin")} width={"120px"}>
+						Log in
+					</Button>
 				</NavbarWrapper>
 			</Container>
 			<Outlet></Outlet>

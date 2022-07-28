@@ -23,7 +23,6 @@ const Properties = () => {
 			},
 		}
 	);
-	console.log(isLoading);
 	if (isLoading)
 		return (
 			<h1
@@ -60,7 +59,6 @@ const Properties = () => {
 					width={"250px"}
 					onClick={() => {
 						setIndex(indexes.end + 6);
-						refetch();
 					}}
 					type={"primary"}
 				>
