@@ -9,10 +9,11 @@ import {
 	Signin,
 	Submit,
 } from "./style";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 const Login = () => {
+	const navigate = useNavigate();
 	const Formik = useFormik({
 		initialValues: {
 			email: "",
@@ -28,7 +29,10 @@ const Login = () => {
 				}),
 			})
 				.then((res) => res.json())
-				.then((res) => res.username && alert("Logged Successfully"));
+				.then((res) => {
+					localStorage.setItem("token", res.authenticationToken);
+					navigate("/");
+				});
 		},
 		validationSchema: Yup.object({
 			email: Yup.string().email().required("Please Enter your Email"),

@@ -19,10 +19,11 @@ const Card_item = styled.div`
 	overflow: hidden;
 	border: 1px solid #e6e9ec;
 	border-radius: 3px;
-	:hover {
-		filter: drop-shadow(0, 20px, 38px, rgba(0, 0, 0, 0.6))
-			drop-shadow(0, 7px, 46px, rgba(0, 0, 0, 0.6))
-			drop-shadow(0, 8px, 15px, rgba(0, 0, 0, 0.6));
+	transition: 0.3s;
+
+	&:hover {
+		cursor: pointer;
+		box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.1);
 	}
 `;
 const Img = styled.img`
@@ -120,9 +121,11 @@ Icons.Ruler = styled(ruler)`
 Icons.Heart = styled(heart)`
 	margin-left: 10px;
 	cursor: pointer;
-
 	:active {
 		transform: scale(0.97);
+	}
+	& path {
+		fill: ${(props) => props.color};
 	}
 `;
 Icons.Cursor = styled(cursor)``;

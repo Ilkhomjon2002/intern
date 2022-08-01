@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Icon } from "../input/style";
 import {
 	Card_item,
@@ -20,6 +20,7 @@ import avatar from "../../../assets/card Icons/24-248253_user-profile-default-im
 import { useNavigate } from "react-router-dom";
 const Card = ({ info, mr, ml, margin, onClick }) => {
 	const navigate = useNavigate();
+	const [like, setLike] = useState(false);
 	const text =
 		(info?.name || "name") +
 		" " +
@@ -50,22 +51,22 @@ const Card = ({ info, mr, ml, margin, onClick }) => {
 				<Icons>
 					<Icons.Wrapper>
 						<Icons.Bed />
-						<Subtitle>4 Beds</Subtitle>
+						<Subtitle>{info?.houseDetails?.bed} Beds</Subtitle>
 					</Icons.Wrapper>
 
 					<Icons.Wrapper>
 						<Icons.Bath />
-						<Subtitle>5 Baths</Subtitle>
+						<Subtitle>{info?.houseDetails?.bath} Baths</Subtitle>
 					</Icons.Wrapper>
 					<Icons.Wrapper>
 						<Icons.Car />
 
-						<Subtitle>1 garage</Subtitle>
+						<Subtitle>{info?.houseDetails?.garage} garage</Subtitle>
 					</Icons.Wrapper>
 					<Icons.Wrapper>
 						<Icons.Ruler />
 
-						<Subtitle>1200 Sq Ft</Subtitle>
+						<Subtitle>{info?.houseDetails?.area} Ft</Subtitle>
 					</Icons.Wrapper>
 				</Icons>
 			</InfoWrapper>
@@ -80,7 +81,12 @@ const Card = ({ info, mr, ml, margin, onClick }) => {
 					<Icons.Cursor
 						onClick={() => navigate(`../view${info.id}`)}
 					></Icons.Cursor>
-					<Icons.Heart></Icons.Heart>
+					<Icons.Heart
+						color={() => like && "red"}
+						onClick={() => {
+							setLike(!like);
+						}}
+					></Icons.Heart>
 				</div>
 			</PriceWrap>
 		</Card_item>

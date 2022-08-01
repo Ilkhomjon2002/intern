@@ -1,5 +1,11 @@
 import styled from "styled-components";
-
+import { ReactComponent as bed } from "../../assets/card Icons/bed-image.svg";
+import { ReactComponent as bath } from "../../assets/card Icons/bath-image.svg";
+import { ReactComponent as car } from "../../assets/card Icons/car-image.svg";
+import { ReactComponent as ruler } from "../../assets/card Icons/ruler-image.svg";
+import { ReactComponent as heart } from "../../assets/card Icons/heart-image.svg";
+import { ReactComponent as cursor } from "../../assets/card Icons/cursor.svg";
+import { ReactComponent as date } from "../../assets/card Icons/Vector(1).svg";
 const Container = styled.div`
 	width: 80%;
 	padding: 24px 130px;
@@ -57,4 +63,60 @@ const Img4 = styled.img`
 	grid-area: img4;
 	position: relative;
 `;
-export { Container, Images, Main, Img1, Img2, Img3, Img4 };
+const Icons = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	margin: 34px 0 51px;
+`;
+Icons.Wrapper = styled.div`
+	display: flex;
+	align-items: center;
+`;
+Icons.Bed = styled(bed)``;
+Icons.Bath = styled(bath)``;
+Icons.Car = styled(car)``;
+Icons.Ruler = styled(ruler)`
+	padding: 5px;
+`;
+Icons.Heart = styled(heart)`
+	margin-left: 10px;
+	cursor: pointer;
+
+	:active {
+		transform: scale(0.97);
+	}
+`;
+Icons.Cursor = styled(cursor)``;
+Icons.Date = styled(date)``;
+
+const Subtitle = styled("p")`
+	color: var(--secondaryColor);
+	font-family: Montserrat;
+	font-size: 15px;
+	margin: 0;
+`;
+const LocInfo = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+`;
+LocInfo.P = styled.p`
+	font-size: 14px;
+`;
+LocInfo.Span = styled.span`
+	font-size: 14px;
+	margin-left: 5px;
+`;
+export {
+	Container,
+	Images,
+	Main,
+	Img1,
+	Img2,
+	Img3,
+	Img4,
+	Icons,
+	Subtitle,
+	LocInfo,
+};

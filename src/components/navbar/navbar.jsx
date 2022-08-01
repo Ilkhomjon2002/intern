@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { navbar } from "../../utils/navbar";
 import Button from "../generics/button/button";
@@ -22,15 +22,28 @@ const Navbar = () => {
 						<Logo.Title>Houzing</Logo.Title>
 					</Logo>
 					<NavbarBody>
-						{navbar?.map(({ id, path, element, title }) => (
-							<Link key={id} to={path}>
-								{title}
-							</Link>
-						))}
+						{navbar?.map(
+							({ id, path, element, title, hidden }) =>
+								!hidden && (
+									<Link key={id} to={path}>
+										{title}
+									</Link>
+								)
+						)}
 					</NavbarBody>
-					<Button onClick={() => navigate("signin")} width={"120px"}>
-						Log in
-					</Button>
+					{!localStorage.getItem("token") && (
+						<Button onClick={() => navigate("signin")} width={"120px"}>
+							Log in
+						</Button>
+					)}
+					{localStorage.getItem("token") && (
+						<Button
+							onClick={() => localStorage.removeItem("token")}
+							width={"120px"}
+						>
+							Log out
+						</Button>
+					)}
 				</NavbarWrapper>
 			</Container>
 			<Outlet></Outlet>

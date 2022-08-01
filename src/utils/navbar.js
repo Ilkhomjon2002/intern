@@ -22,4 +22,11 @@ export const navbar = [
 		path: "/contact",
 		element: <Generic></Generic>,
 	},
+	{
+		id: 4,
+		title: "MyProfile",
+		path: "/profile",
+		hidden: localStorage.getItem("token") ? false : true,
+		element: <h1>My Profile</h1>,
+	},
 ];

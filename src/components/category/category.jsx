@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Category_Card from "./category_card/category_card";
 import { Container, Icon, Wrap } from "./style";
-import AliceCarousel from "react-alice-carousel";
+import AliceCarousel, { slidePrev, slideNext } from "react-alice-carousel";
 import { useQuery } from "react-query";
 import Icon1 from "../../assets/category Icons/apartment.svg";
 import Icon2 from "../../assets/category Icons/business-and-trade.svg";
@@ -39,8 +39,8 @@ const Category = () => {
 				</p>
 			</div>
 			<Wrap>
-				<Icon.Right></Icon.Right>
-				<Icon.Left></Icon.Left>
+				<Icon.Right onClick={slideNext}></Icon.Right>
+				<Icon.Left onClick={slidePrev}></Icon.Left>
 				<AliceCarousel
 					mouseTracking
 					disableButtonsControls={true}
