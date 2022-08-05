@@ -5,6 +5,7 @@ const Card = styled.div`
 	justify-content: center;
 	align-items: center;
 	position: relative;
+	cursor: pointer;
 	width: 280px;
 	overflow: hidden;
 	border-radius: 3px;
@@ -16,6 +17,10 @@ const Card = styled.div`
 	box-shadow: 0px 20px 38px rgba(0, 0, 0, 0.06),
 		0px 7px 46px rgba(0, 0, 0, 0.06), 0px 8px 15px rgba(0, 0, 0, 0.06);
 	border-radius: 3px;
+	&:hover img {
+		transform: scale(1.1);
+		transition: 0.3s;
+	}
 `;
 Card.Img = styled.img`
 	width: 100%;

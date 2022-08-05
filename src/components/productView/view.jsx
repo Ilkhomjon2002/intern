@@ -17,20 +17,20 @@ import Map from "../map/map";
 const View = () => {
 	const [data, setData] = useState();
 	const param = useParams();
-	console.log(param);
 	useQuery(
-		"Data2",
+		"get house by id",
 		() =>
-			fetch("https://houzing-app.herokuapp.com/api/v1/houses/list").then(
-				(res) => res.json()
-			),
+			fetch(`https://houzing-app.herokuapp.com/api/v1/houses/${param.id}`, {
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem("token")}`,
+				},
+			}).then((res) => res.json()),
 		{
 			onSuccess: (res) => {
-				res = res.data.find((val) => {
-					return val.id === +param.id;
-				});
-				setData(res);
+				setData(res.data);
 			},
+			refetchOnWindowFocus: false,
+			keepPreviousData: true,
 		}
 	);
 	console.log(data);
@@ -110,7 +110,6 @@ const View = () => {
 				</LocInfo.P>
 				<LocInfo.P className="title">
 					<span>City:</span>
-					{console.log(data?.city)}
 					<LocInfo.Span className="description">
 						{data?.city || "city"}
 					</LocInfo.Span>
@@ -128,12 +127,7 @@ const View = () => {
 					</LocInfo.Span>
 				</LocInfo.P>
 			</LocInfo>
-			<Map
-				latLng={{
-					lat: data?.location?.latitude,
-					lng: data?.location?.longitude,
-				}}
-			></Map>
+			<Map lat={data?.location?.latitude} lng={data?.location?.longitude}></Map>
 		</Container>
 	);
 };

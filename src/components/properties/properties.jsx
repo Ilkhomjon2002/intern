@@ -8,12 +8,14 @@ import Button from "../generics/button/button";
 const Properties = () => {
 	const [data, setData] = useState([]);
 	const [indexes, setIndex] = useState({ start: 0, end: 6 });
-	const { isLoading, refetch } = useQuery(
-		"test",
+	const { isLoading, isRefetching } = useQuery(
+		"getHouses",
 		() =>
-			fetch("https://houzing-app.herokuapp.com/api/v1/houses/list").then(
-				(res) => res.json()
-			),
+			fetch("https://houzing-app.herokuapp.com/api/v1/houses/list", {
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem("token")}`,
+				},
+			}).then((res) => res.json()),
 		{
 			onSuccess: (res) => {
 				setData([...res.data]);
@@ -21,31 +23,25 @@ const Properties = () => {
 			onerror: (err) => {
 				console.log(err);
 			},
+			refetchOnWindowFocus: false,
+			keepPreviousData: true,
 		}
 	);
-	if (isLoading)
-		return (
-			<h1
-				style={{
-					width: "100%",
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "center",
-					fontSize: "80px",
-				}}
-			>
-				Loading ...
-			</h1>
-		);
+
 	return (
 		<Container>
 			<Filter></Filter>
 			<div>
-				<h1 className="title">Properties</h1>
+				{isLoading || isRefetching ? (
+					<h1 className="title"> Loading... </h1>
+				) : (
+					<h1 className="title"> Properties </h1>
+				)}
 				<p className="description">
 					Nulla quis curabitur velit volutpat auctor bibendum consectetur sit.
 				</p>
 			</div>
+
 			<Results>
 				<h1>{data.length}</h1> results
 			</Results>

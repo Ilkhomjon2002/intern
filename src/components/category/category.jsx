@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Category_Card from "./category_card/category_card";
 import { Container, Icon, Wrap } from "./style";
-import AliceCarousel, { slidePrev, slideNext } from "react-alice-carousel";
+import AliceCarousel from "react-alice-carousel";
 import { useQuery } from "react-query";
 import Icon1 from "../../assets/category Icons/apartment.svg";
 import Icon2 from "../../assets/category Icons/business-and-trade.svg";
@@ -17,17 +17,15 @@ const Category = () => {
 			),
 		{
 			onSuccess: (res) => {
-				console.log(res.data);
 				setCategory([...res.data]);
 			},
 		}
 	);
 	const Icons = [Icon1, Icon2, Icon3, Icon4];
 	let index = 0;
-
+	const slider = useRef();
 	const items = category.map((val) => {
 		index = index < 3 ? ++index : 0;
-		console.log(index);
 		return <Category_Card data={val} icon={Icons[index]}></Category_Card>;
 	});
 	return (
@@ -39,8 +37,8 @@ const Category = () => {
 				</p>
 			</div>
 			<Wrap>
-				<Icon.Right onClick={slideNext}></Icon.Right>
-				<Icon.Left onClick={slidePrev}></Icon.Left>
+				<Icon.Right onClick={() => slider.current.slideNext()}></Icon.Right>
+				<Icon.Left onClick={() => slider.current.slidePrev()}></Icon.Left>
 				<AliceCarousel
 					mouseTracking
 					disableButtonsControls={true}
@@ -49,7 +47,9 @@ const Category = () => {
 						728: { items: 3 },
 						1424: { items: 4 },
 					}}
+					ref={slider}
 					items={items}
+					style={{ gap: "20px" }}
 				></AliceCarousel>
 			</Wrap>
 		</Container>

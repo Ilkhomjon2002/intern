@@ -12,7 +12,6 @@ import {
 } from "./style";
 const CarouselComponent = () => {
 	const slider = useRef();
-	console.log(slider);
 	return (
 		<CarouselWrapper>
 			<Icon.Left onClick={() => slider.current?.prev()} />

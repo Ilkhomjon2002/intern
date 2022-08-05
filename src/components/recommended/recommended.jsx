@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useQuery } from "react-query";
 import Card from "../generics/card/card";
 import AliceCarousel from "react-alice-carousel";
@@ -21,6 +21,7 @@ const Recommended = () => {
 		}
 	);
 	const Items = data.map((val) => <Card info={val}></Card>);
+	const slider = useRef();
 	return (
 		<Container>
 			<h1 className="title">Recommended</h1>
@@ -29,8 +30,8 @@ const Recommended = () => {
 			</p>
 
 			<Wrap>
-				<Icon.Left></Icon.Left>
-				<Icon.Right></Icon.Right>
+				<Icon.Left onClick={() => slider.current.slidePrev()}></Icon.Left>
+				<Icon.Right onClick={() => slider.current.slideNext()}></Icon.Right>
 				<AliceCarousel
 					arrows={false}
 					disableButtonsControls={true}
@@ -45,6 +46,8 @@ const Recommended = () => {
 					}}
 					mouseTracking
 					items={Items}
+					ref={slider}
+					style={{ gap: "20px" }}
 				/>
 			</Wrap>
 		</Container>

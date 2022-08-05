@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import React from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { navbar } from "../../utils/navbar";
 import Button from "../generics/button/button";
 import {
@@ -13,6 +13,19 @@ import {
 
 const Navbar = () => {
 	const navigate = useNavigate();
+	const location = useLocation();
+	const goToSignIn = () => {
+		navigate("/signin");
+	};
+	const logout = () => {
+		localStorage.removeItem("token");
+		if (location?.pathname?.includes("profile")) {
+			navigate("/home");
+		} else {
+			navigate(location.pathname);
+		}
+	};
+
 	return (
 		<Wrapper>
 			<Container>
@@ -31,17 +44,22 @@ const Navbar = () => {
 								)
 						)}
 					</NavbarBody>
-					{!localStorage.getItem("token") && (
-						<Button onClick={() => navigate("signin")} width={"120px"}>
+					{localStorage.getItem("token") ? (
+						<>
+							<Button
+								width={"131px"}
+								onClick={() => navigate("/profile")}
+								type={"primary"}
+							>
+								Profile
+							</Button>
+							<Button onClick={logout} ml={10} width={"131px"}>
+								Log out
+							</Button>
+						</>
+					) : (
+						<Button onClick={goToSignIn} width={"120px"}>
 							Log in
-						</Button>
-					)}
-					{localStorage.getItem("token") && (
-						<Button
-							onClick={() => localStorage.removeItem("token")}
-							width={"120px"}
-						>
-							Log out
 						</Button>
 					)}
 				</NavbarWrapper>

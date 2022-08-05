@@ -39,6 +39,8 @@ const Login = () => {
 			password: Yup.string().required("Please Enter your password"),
 		}),
 	});
+	console.log(Formik);
+
 	return (
 		<Container>
 			<Signin onSubmit={Formik.handleSubmit}>

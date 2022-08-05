@@ -21,6 +21,10 @@ import { useNavigate } from "react-router-dom";
 const Card = ({ info, mr, ml, margin, onClick }) => {
 	const navigate = useNavigate();
 	const [like, setLike] = useState(false);
+	const navigateToView = () => {
+		if (localStorage.getItem("token")) navigate(`../properties/${info.id}`);
+		else alert("You have to login first to see house information");
+	};
 	const text =
 		(info?.name || "name") +
 		" " +
@@ -78,9 +82,7 @@ const Card = ({ info, mr, ml, margin, onClick }) => {
 				</div>
 
 				<div>
-					<Icons.Cursor
-						onClick={() => navigate(`../view${info.id}`)}
-					></Icons.Cursor>
+					<Icons.Cursor onClick={navigateToView}></Icons.Cursor>
 					<Icons.Heart
 						color={() => like && "red"}
 						onClick={() => {
