@@ -13,6 +13,11 @@ const Properties = () => {
 	const { search } = useLocation();
 	const query = useSearch();
 
+	useEffect(() => {
+		if (!query.get("category_id")) {
+			setTitle("Properties");
+		}
+	}, [query.get("category_id")]);
 	useQuery(
 		["search", search],
 		() =>
@@ -30,12 +35,14 @@ const Properties = () => {
 	const { isLoading, isRefetching } = useQuery(
 		"getHouses",
 		() =>
-			fetch("https://houzing-app.herokuapp.com/api/v1/houses/list").then(
-				(res) => res.json()
-			),
+			query.get("category_id") &&
+			fetch(
+				"https://houzing-app.herokuapp.com/api/v1/categories/" +
+					query.get("category_id")
+			).then((res) => res.json()),
 		{
 			onSuccess: (res) => {
-				setData([...res.data]);
+				query.get("category_id") && setTitle(res?.data?.name);
 			},
 			onerror: (err) => {
 				console.log(err);

@@ -12,7 +12,7 @@ export const navbar = [
 		path: "/home",
 		element: <Home></Home>,
 		hidden: false,
-		private: false,
+		privat: false,
 		search: "?",
 	},
 	{
@@ -21,7 +21,7 @@ export const navbar = [
 		path: "/properties",
 		element: <Properties></Properties>,
 		hidden: false,
-		private: false,
+		privat: true,
 		search: "?",
 	},
 	{
@@ -30,7 +30,7 @@ export const navbar = [
 		path: "/properties/:id",
 		element: <View></View>,
 		search: "?",
-		private: false,
+		privat: true,
 		hidden: true,
 		param: true,
 	},
@@ -40,7 +40,7 @@ export const navbar = [
 		path: "/contact",
 		element: <Generic></Generic>,
 		search: "?",
-		private: false,
+		privat: false,
 		hidden: false,
 	},
 	{
@@ -48,9 +48,9 @@ export const navbar = [
 		title: "MyProfile",
 		path: "/profile",
 		search: "?",
-		private: true,
+		privat: true,
 		hidden: true,
-		element: <Generic></Generic>,
+		element: <Profile></Profile>,
 		param: true,
 	},
 	{
@@ -60,7 +60,7 @@ export const navbar = [
 		element: <Login></Login>,
 		hidden: true,
 		param: true,
-		private: false,
+		privat: false,
 		search: "?",
 	},
 	{
@@ -70,7 +70,7 @@ export const navbar = [
 		element: <Signup></Signup>,
 		hidden: true,
 		param: true,
-		private: false,
+		privat: false,
 		search: "?",
 	},
 ];

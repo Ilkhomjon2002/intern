@@ -93,6 +93,9 @@ const Login = () => {
 					<NavLink to={"/"}>Forgot</NavLink>
 				</Others>
 				<Submit type={"submit"}>Login</Submit>
+				<NavLink to={"/signup"}>
+					Do you have an account? If not, register one.
+				</NavLink>
 			</Signin>
 		</Container>
 	);

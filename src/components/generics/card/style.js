@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ReactComponent as bed } from "../../../assets/card Icons/bed-image.svg";
 import { ReactComponent as bath } from "../../../assets/card Icons/bath-image.svg";
 import { ReactComponent as car } from "../../../assets/card Icons/car-image.svg";
-import { ReactComponent as ruler } from "../../../assets/card Icons/ruler-image.svg";
+import { ReactComponent as ruler } from "../../../assets/card Icons/rulerruler.svg";
 import { ReactComponent as heart } from "../../../assets/card Icons/heart-image.svg";
 import { ReactComponent as cursor } from "../../../assets/card Icons/cursor.svg";
 
@@ -115,9 +115,7 @@ Icons.Wrapper = styled.div`
 Icons.Bed = styled(bed)``;
 Icons.Bath = styled(bath)``;
 Icons.Car = styled(car)``;
-Icons.Ruler = styled(ruler)`
-	padding: 5px;
-`;
+Icons.Ruler = styled(ruler)``;
 Icons.Heart = styled(heart)`
 	margin-left: 10px;
 	cursor: pointer;

@@ -1,15 +1,6 @@
 import React, { useState } from "react";
-import {
-	CheckBox,
-	Container,
-	ErrorWindow,
-	Input,
-	Label,
-	Others,
-	Signin,
-	Submit,
-} from "./style";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Container, ErrorWindow, Input, Signin, Submit } from "./style";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 const Signup = () => {
@@ -36,19 +27,28 @@ const Signup = () => {
 			})
 				.then(
 					(res) => res.json(),
-					(err) => setError(err.message)
-				)
-				.then((res) => {
-					if (res?.success) {
-						alert(
-							"We sent verification to your email please verify it and login with that email"
-						);
-						navigate("/login");
-						setError(false);
-					} else {
-						setError(res.message);
+					(err) => {
+						console.log(err, "err");
+						setError(err.message);
 					}
-				});
+				)
+				.then(
+					(res) => {
+						console.log(res, "res");
+						if (res.success) {
+							alert(
+								"We sent verification to your email please verify it and login with that email"
+							);
+							setTimeout(() => {
+								navigate("/login");
+								setError(false);
+							}, 5000);
+						} else {
+							setError(res.message || res.error);
+						}
+					},
+					(err) => console.log(err)
+				);
 		},
 		validationSchema: yup.object({
 			email: yup
@@ -60,7 +60,6 @@ const Signup = () => {
 			password: yup.string().required("Password is required"),
 		}),
 	});
-
 	return (
 		<Container>
 			<Signin onSubmit={Formik.handleSubmit}>

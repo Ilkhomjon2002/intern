@@ -3,10 +3,8 @@ import Button from "../generics/button/button";
 import Input from "../generics/input/input";
 import { Container, Fragment, Icon, Title, Wrapper } from "./style";
 import { Popover } from "antd";
-import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import UseReplace from "../../hooks/useReplace/useReplace";
-import { useSearch } from "../../hooks/useSearch/useSearch";
 const Filter = () => {
 	const navigate = useNavigate();
 	const onChange = ({ target: { name, value } }) => {

@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { navbar } from "../../utils/navbar";
+import Footer from "../footer/footer";
 import Button from "../generics/button/button";
 import {
 	Container,
@@ -17,9 +18,7 @@ const Navbar = () => {
 	const goToSignIn = () => {
 		navigate("/signin");
 	};
-	const goToSignUp = () => {
-		navigate("/signup");
-	};
+
 	const logout = () => {
 		localStorage.removeItem("token");
 		if (location?.pathname?.includes("profile")) {
@@ -49,11 +48,7 @@ const Navbar = () => {
 					</NavbarBody>
 					{localStorage.getItem("token") ? (
 						<>
-							<Button
-								width={"131px"}
-								onClick={() => navigate("/profile")}
-								type={"primary"}
-							>
+							<Button width={"131px"} onClick={() => navigate("/profile")}>
 								Profile
 							</Button>
 							<Button onClick={logout} ml={10} width={"131px"}>
@@ -65,14 +60,12 @@ const Navbar = () => {
 							<Button onClick={goToSignIn} width={"120px"}>
 								Log in
 							</Button>
-							<Button ml={"10"} onClick={goToSignUp} width={"120px"}>
-								Sign up
-							</Button>
 						</>
 					)}
 				</NavbarWrapper>
 			</Container>
 			<Outlet></Outlet>
+			<Footer></Footer>
 		</Wrapper>
 	);
 };
