@@ -20,14 +20,13 @@ const View = () => {
 	useQuery(
 		"get house by id",
 		() =>
-			fetch(`https://houzing-app.herokuapp.com/api/v1/houses/${param.id}`, {
-				headers: {
-					Authorization: `Bearer ${localStorage.getItem("token")}`,
-				},
-			}).then((res) => res.json()),
+			fetch(`https://houzing-app.herokuapp.com/api/v1/houses/list`).then(
+				(res) => res.json()
+			),
 		{
 			onSuccess: (res) => {
-				setData(res.data);
+				res = res.data.find((val) => val.id == param.id);
+				setData(res);
 			},
 			refetchOnWindowFocus: false,
 			keepPreviousData: true,

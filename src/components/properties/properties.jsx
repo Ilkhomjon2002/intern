@@ -4,18 +4,35 @@ import { Cards, Container, Results } from "./style";
 import { useQuery } from "react-query";
 import Card from "../generics/card/card";
 import Button from "../generics/button/button";
+import { useLocation } from "react-router-dom";
+import { useSearch } from "../../hooks/useSearch/useSearch";
 
 const Properties = () => {
+	const [title, setTitle] = useState("Properties");
 	const [data, setData] = useState([]);
+	const { search } = useLocation();
+	const query = useSearch();
+
+	useQuery(
+		["search", search],
+		() =>
+			fetch(
+				"https://houzing-app.herokuapp.com/api/v1/houses/list" + search || ""
+			).then((res) => res.json()),
+		{
+			onSuccess: (res) => {
+				setData(res?.data || []);
+			},
+		}
+	);
+	// const query = useSearch();
 	const [indexes, setIndex] = useState({ start: 0, end: 6 });
 	const { isLoading, isRefetching } = useQuery(
 		"getHouses",
 		() =>
-			fetch("https://houzing-app.herokuapp.com/api/v1/houses/list", {
-				headers: {
-					Authorization: `Bearer ${localStorage.getItem("token")}`,
-				},
-			}).then((res) => res.json()),
+			fetch("https://houzing-app.herokuapp.com/api/v1/houses/list").then(
+				(res) => res.json()
+			),
 		{
 			onSuccess: (res) => {
 				setData([...res.data]);

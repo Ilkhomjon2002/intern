@@ -24,7 +24,8 @@ const Input = styled.input`
 	border: none;
 	outline: none;
 	border-bottom: 2px #e6e9ec solid;
-	padding: 4px;
+	padding: 30px 0 0 4px;
+
 	width: 520px;
 	/* Color/2 */
 	font-size: 16px;
@@ -33,17 +34,7 @@ const Input = styled.input`
 		border-bottom: 2px #0061df solid;
 	}
 `;
-const Label = styled.label`
-	color: #0d263b;
-	padding: 30px 0 0 4px;
-	font-size: 16px;
-`;
-const Others = styled.div`
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 16px 0 32px 0;
-`;
+
 const Submit = styled.button`
 	display: flex;
 	font-size: 14px;
@@ -57,6 +48,8 @@ const Submit = styled.button`
 	-webkit-user-select: none;
 	-khtml-user-select: none;
 	padding: 12px;
+
+	margin-top: 20px;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
@@ -74,13 +67,4 @@ const ErrorWindow = styled.div`
 	background-color: rgba(255, 0, 0, 0.1);
 `;
 const CheckBox = styled.input``;
-export {
-	Container,
-	Signin,
-	Input,
-	CheckBox,
-	Submit,
-	Label,
-	Others,
-	ErrorWindow,
-};
+export { Container, Signin, Input, CheckBox, Submit, ErrorWindow };

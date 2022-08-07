@@ -22,8 +22,7 @@ const Card = ({ info, mr, ml, margin, onClick }) => {
 	const navigate = useNavigate();
 	const [like, setLike] = useState(false);
 	const navigateToView = () => {
-		if (localStorage.getItem("token")) navigate(`../properties/${info.id}`);
-		else alert("You have to login first to see house information");
+		navigate(`../properties/${info.id}`);
 	};
 	const text =
 		(info?.name || "name") +

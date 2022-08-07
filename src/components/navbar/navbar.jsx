@@ -17,6 +17,9 @@ const Navbar = () => {
 	const goToSignIn = () => {
 		navigate("/signin");
 	};
+	const goToSignUp = () => {
+		navigate("/signup");
+	};
 	const logout = () => {
 		localStorage.removeItem("token");
 		if (location?.pathname?.includes("profile")) {
@@ -58,9 +61,14 @@ const Navbar = () => {
 							</Button>
 						</>
 					) : (
-						<Button onClick={goToSignIn} width={"120px"}>
-							Log in
-						</Button>
+						<>
+							<Button onClick={goToSignIn} width={"120px"}>
+								Log in
+							</Button>
+							<Button ml={"10"} onClick={goToSignUp} width={"120px"}>
+								Sign up
+							</Button>
+						</>
 					)}
 				</NavbarWrapper>
 			</Container>

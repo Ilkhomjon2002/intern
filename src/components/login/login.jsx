@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	CheckBox,
 	Container,
@@ -12,38 +12,52 @@ import {
 import { NavLink, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useMutation } from "react-query";
 const Login = () => {
 	const navigate = useNavigate();
-	const Formik = useFormik({
-		initialValues: {
-			email: "",
-			password: "",
-		},
-		onSubmit: (value) => {
-			fetch("https://houzing-app.herokuapp.com/api/public/auth/login", {
-				method: "POST",
-				headers: { "Content-type": "Application/json" },
-				body: JSON.stringify({
-					email: value.email,
-					password: value.password,
-				}),
-			})
-				.then((res) => res.json())
-				.then((res) => {
-					localStorage.setItem("token", res.authenticationToken);
-					navigate("/");
-				});
-		},
-		validationSchema: Yup.object({
-			email: Yup.string().email().required("Please Enter your Email"),
-			password: Yup.string().required("Please Enter your password"),
-		}),
+	const [error, setError] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const { mutate } = useMutation((res) => {
+		return fetch("https://houzing-app.herokuapp.com/api/public/auth/login", {
+			method: "POST",
+			headers: { "Content-type": "Application/json" },
+			body: JSON.stringify({
+				email,
+				password,
+			}),
+		}).then((res) => res.json());
 	});
-	console.log(Formik);
 
+	const onSubmit = () => {
+		if (email?.length && password?.length) {
+			mutate(
+				{},
+				{
+					onSuccess: (res) => {
+						if (res?.authenticationToken) {
+							localStorage.setItem("token", res.authenticationToken);
+							navigate("/home");
+							setError(false);
+						} else {
+							setError("Email or password is wrong");
+						}
+					},
+					onError: (err) => setError("Email or password is wrong"),
+				}
+			);
+		} else {
+			setError("Email or Password shouldn`t be empty");
+		}
+	};
 	return (
 		<Container>
-			<Signin onSubmit={Formik.handleSubmit}>
+			<Signin
+				onSubmit={(e) => {
+					e.preventDefault();
+					onSubmit();
+				}}
+			>
 				<h1 className="title" style={{ textAlign: "left" }}>
 					Log in
 				</h1>
@@ -52,31 +66,23 @@ const Login = () => {
 					id="email"
 					name="email"
 					type={"email"}
-					value={Formik.values.email}
+					value={email}
 					placeholder="Email"
-					onChange={Formik.handleChange}
-					style={{
-						borderBottomColor: Formik.errors.email ? "red" : "blue",
-					}}
+					onChange={({ target: { value } }) => setEmail(value)}
 				></Input>
-				{Formik.errors.email && (
-					<ErrorWindow>{Formik.errors.email}</ErrorWindow>
-				)}
+
 				<Label for="password">Password</Label>
 				<Input
 					id="password"
 					name="password"
 					type={"password"}
-					value={Formik.values.password}
+					value={password}
 					placeholder="Password"
-					style={{
-						borderBottomColor: Formik.errors.password ? "red" : "blue",
-					}}
-					onChange={Formik.handleChange}
+					onChange={({ target: { value } }) => setPassword(value)}
 				></Input>
-				{Formik.errors.password && (
-					<ErrorWindow>{Formik.errors.password}</ErrorWindow>
-				)}
+
+				{error && <ErrorWindow>{error}</ErrorWindow>}
+
 				<Others>
 					<div>
 						<CheckBox name="remember" id="remember" type="checkbox"></CheckBox>

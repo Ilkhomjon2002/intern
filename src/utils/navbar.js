@@ -1,6 +1,7 @@
 import Login from "../components/login/login";
 import View from "../components/productView/view";
 import Profile from "../components/profile/profile";
+import Signup from "../components/signup/signup";
 import Generic from "../page/GenericPage";
 import Home from "../page/Home/home";
 import Properties from "../page/Properties/properties";
@@ -57,6 +58,16 @@ export const navbar = [
 		title: "Signin",
 		path: "/signin",
 		element: <Login></Login>,
+		hidden: true,
+		param: true,
+		private: false,
+		search: "?",
+	},
+	{
+		id: 6,
+		title: "Signup",
+		path: "/signup",
+		element: <Signup></Signup>,
 		hidden: true,
 		param: true,
 		private: false,
